@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email"
+                                <input type="string"
                                     class="form-control @error('email')
                                 is-invalid
                             @enderror"
@@ -70,7 +70,7 @@
                                             <i class="fas fa-lock"></i>
                                         </div>
                                     </div>
-                                    <input type="password"
+                                    <input type="string"
                                         class="form-control @error('password')
                                 is-invalid
                             @enderror"
