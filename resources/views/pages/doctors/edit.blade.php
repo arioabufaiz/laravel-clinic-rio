@@ -30,7 +30,7 @@
 
 
                 <div class="card">
-                    <form action="{{ route('doctors.update', $doctor) }}" method="POST">
+                    <form action="{{ route('doctors.update', $doctor->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
@@ -51,6 +51,25 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Specialist</label>
+                                <input type="text"
+                                    class="form-control @error('doctor_specialist')
+                                is-invalid
+                            @enderror"
+                                    name="doctor_specialist" value="{{ $doctor->doctor_specialist }}">
+                                @error('doctor_specialist')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="phone" class="form-control" name="phone"
+                                    value="{{ $doctor->doctor_phone }}">
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email</label>
                                 <input type="string"
                                     class="form-control @error('doctor_email')
@@ -63,12 +82,19 @@
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="form-group">
-                                <label>Phone</label>
-                                <input type="string" class="form-control" name="phone"
-                                    value="{{ $doctor->doctor_phone }}">
+                                <label>Photo</label>
+                                <input type="photo" class="form-control" name="photo" value="{{ $doctor->photo }}">
                             </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="phone" class="form-control" name="address" value="{{ $doctor->address }}">
+                            </div>
+                            <div class="form-group">
+                                <label>SIP</label>
+                                <input type="sip" class="form-control" name="sip" value="{{ $doctor->sip }}">
+                            </div>
+
 
                         </div>
                         <div class="card-footer text-right">

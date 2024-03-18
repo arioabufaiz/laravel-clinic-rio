@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Doctor')
+@section('title', 'Edit DoctorSchedule')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,57 +20,68 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Doctors</div>
+                    <div class="breadcrumb-item">DoctorSchedules</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Doctors</h2>
+                <h2 class="section-title">DoctorSchedule</h2>
 
 
 
                 <div class="card">
-                    <form action="{{ route('doctors.update', $doctor) }}" method="POST">
+                    <form action="{{ route('doctor-schedules.update', $doctorSchedule->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text"
-                                    class="form-control @error('doctor_name')
-                                is-invalid
-                            @enderror"
-                                    name="doctor_name" value="{{ $doctor->doctor_name }}">
-                                @error('doctor_name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="string"
-                                    class="form-control @error('doctor_email')
-                                is-invalid
-                            @enderror"
-                                    name="doctor_email" value="{{ $doctor->doctor_email }}">
-                                @error('doctor_email')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="string" class="form-control" name="phone"
-                                    value="{{ $doctor->doctor_phone }}">
-                            </div>
+                        <div class="form-group">
+                            <label>Doctor</label>
+                            <select class="form-control selectric @error('doctor_id') is-invalid @enderror"
+                                name="doctor_id">
+                                <option value="">Select Doctor</option>
+                                @foreach ($doctors as $doctor)
+                                    <option value="{{ $doctor->id }}">{{ $doctor->doctor_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Jadwal Senin</label>
+                            <input type="time" class="form-control " name="senin"value="{{ $doctorSchedule->time }}">
 
                         </div>
+                        <div class="form-group">
+                            <label>Jadwal Selasa</label>
+                            <input type="time" class="form-control " name="selasa"value="{{ $doctorSchedule->time }}">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Jadwal Rabu</label>
+                            <input type="time" class="form-control " name="rabu"value="{{ $doctorSchedule->time }}">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Jadwal Kamis</label>
+                            <input type="time" class="form-control " name="kamis"value="{{ $doctorSchedule->time }}">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Jadwal Jumat</label>
+                            <input type="time" class="form-control " name="jumat"value="{{ $doctorSchedule->time }}">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Jadwal Sabtu</label>
+                            <input type="time" class="form-control " name="sabtu"value="{{ $doctorSchedule->time }}">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Jadwal Minggu</label>
+                            <input type="time" class="form-control " name="minggu" value="{{ $doctorSchedule->time }}">
+
+                        </div>
+
                         <div class="card-footer text-right">
                             <button class="btn btn-primary">Submit</button>
                         </div>

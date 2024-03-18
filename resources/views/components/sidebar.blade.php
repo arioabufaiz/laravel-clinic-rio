@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Bahri Klinik</a>
+            <a href="index.html">Ario Klinik</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
@@ -31,6 +31,12 @@
                 <ul class="dropdown-menu">
                     <li class=''>
                         <a class="nav-link" href="{{ route('doctor-schedules.index') }}">Doctor Schedules</a>
+                    </li>
+
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="{{ route('patients.index') }}">Patients</a>
                     </li>
 
                 </ul>

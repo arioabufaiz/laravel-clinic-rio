@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Advanced Forms')
+@section('title', 'Add Schedule')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,157 +20,96 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Doctors</div>
+                    <div class="breadcrumb-item">Schedule</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Doctors</h2>
+                <h2 class="section-title">Schedule</h2>
+
+
 
                 <div class="card">
-                    <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('doctor-schedules.store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
+
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text"
-                                    class="form-control @error('doctor_name')
-                                is-invalid
-                            @enderror"
-                                    name="doctor_name">
-                                @error('doctor_name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <label>Doctor</label>
+                                <select class="form-control selectric @error('doctor_id') is-invalid @enderror"
+                                    name="doctor_id">
+                                    <option value="">Select Doctor</option>
+                                    @foreach ($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}">{{ $doctor->doctor_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Senin</label>
+                                <input type="text" class="form-control " name="senin">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Selasa</label>
+                                <input type="text" class="form-control " name="selasa">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Rabu</label>
+                                <input type="text" class="form-control " name="rabu">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Kamis</label>
+                                <input type="text" class="form-control " name="kamis">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Jumat</label>
+                                <input type="text" class="form-control " name="jumat">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Sabtu</label>
+                                <input type="text" class="form-control " name="sabtu">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Minggu</label>
+                                <input type="text" class="form-control " name="minggu">
+
+                            </div>
+
+                            {{-- <div class="form-group mb-0">
+                                <label>Note</label>
+                                <textarea class="form-control" name="note"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label>Specialist</label>
-                                <input type="text"
-                                    class="form-control @error('doctor_specialist')
-                                is-invalid
-                            @enderror"
-                                    name="doctor_specialist">
-                                @error('doctor_specialist')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="number"
-                                    class="form-control @error('doctor_phone')
-                                is-invalid
-                            @enderror"
-                                    name="doctor_phone">
-                                @error('doctor_phone')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                <label class="form-label">Status</label>
+                                <div class="selectgroup w-100">
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="status" value="active" class="selectgroup-input"
+                                            checked="">
+                                        <span class="selectgroup-button">Active</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="status" value="inactive" class="selectgroup-input">
+                                        <span class="selectgroup-button">Inactive</span>
+                                    </label>
 
 
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="string"
-                                    class="form-control @error('doctor_email')
-                                is-invalid
-                            @enderror"
-                                    name="doctor_email">
-                                @error('doctor_email')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>Photo</label>
-                                <div class="col-sm-9">
-                                    <input type="file" class="form-control" name="photo"
-                                        @error('photo') is-invalid @enderror>
                                 </div>
-                                @error('image')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            </div> --}}
+
+
+
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary">Submit</button>
                             </div>
-
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="text"
-                                    class="form-control @error('address')
-                                is-invalid
-                            @enderror"
-                                    name="address">
-                                @error('address')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>SIP</label>
-                                <input type="number"
-                                    class="form-control @error('sip')
-                                is-invalid
-                            @enderror"
-                                    name="sip">
-                                @error('sip')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>IdIHS</label>
-                                <input type="number"
-                                    class="form-control @error('id_ihs')
-                                is-invalid
-                            @enderror"
-                                    name="id_ihs">
-                                @error('id_ihs')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>NIK</label>
-                                <input type="number"
-                                    class="form-control @error('nik')
-                                is-invalid
-                            @enderror"
-                                    name="nik">
-                                @error('sip')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-
-
-
-
-
-
-                        </div>
-
-                        <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
-                        </div>
                     </form>
                 </div>
 
